@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nla_author_app/services/hiveStorage.dart';
 import 'package:nla_author_app/services/timeOfDay.dart';
+import 'package:nla_author_app/view/Pages/pastQuestionObjCategories.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,12 +22,14 @@ class HomePage extends StatelessWidget {
                 height: 13,
               ),
               Text("which do you want to do today"),
-               SizedBox(
+              SizedBox(
                 height: 50,
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(minimumSize: Size(200, 40)),
-                onPressed: () {},
+                onPressed: () {
+                 Get.to(()=>PastQuestionObj());
+                },
                 child: Text('Add Past Questions'),
               ),
               ElevatedButton(

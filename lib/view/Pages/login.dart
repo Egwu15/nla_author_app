@@ -3,6 +3,8 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nla_author_app/controllers/authController.dart';
 import 'package:nla_author_app/services/themeService.dart';
+import 'package:nla_author_app/view/common/custormButton.dart';
+import 'package:nla_author_app/view/common/custormLoadingIndicator.dart';
 import 'package:nla_author_app/view/common/custormTextField.dart';
 
 class Login extends StatefulWidget {
@@ -44,46 +46,40 @@ class _LoginState extends State<Login> {
                 height: 73.0,
               ),
               CustOutLinedTextField(
-                  controller: _emailController, hint: "Email address"),
+                controller: _emailController,
+                hint: "Email address",
+                keyboardType: TextInputType.emailAddress,
+              ),
               SizedBox(
                 height: 25.0,
               ),
               CustOutLinedTextField(
-                controller: _passwordController,
-                hint: "password",
-                obscure: true,
-              ),
+                  controller: _passwordController,
+                  hint: "Password",
+                  obscure: true,
+                  keyboardType: TextInputType.visiblePassword),
               SizedBox(
                 height: 35.0,
               ),
-              OutlinedButton(
-                onPressed: () {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                  Auth()
-                      .login(
-                          email: _emailController.text,
-                          password: _passwordController.text)
-                      .then((_) {
+
+              CustormButton(
+                  isLoading: _isLoading,
+                  func: () {
                     setState(() {
-                      _isLoading = false;
+                      _isLoading = true;
                     });
-                  });
-                },
-                child: _isLoading
-                    ? CircularProgressIndicator.adaptive()
-                    : Text(
-                        "LOGIN",
-                        style: GoogleFonts.roboto(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                style: OutlinedButton.styleFrom(
-                  fixedSize: Size(Get.width, 50),
-                ),
-              ),
+                    Auth()
+                        .login(
+                            email: _emailController.text,
+                            password: _passwordController.text)
+                        .then((_) {
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    });
+                  },
+                  text: "LOGIN")
+              
             ]),
           ),
         ),
