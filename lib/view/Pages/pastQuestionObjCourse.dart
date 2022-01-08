@@ -21,7 +21,7 @@ class _PastQuestionObjState extends State<PastQuestionObj> {
     setState(() {
       _isLoading = true;
     });
-    PastQueController().getCategories().then((category) {
+    PastQueController().getCourse().then((category) {
       setState(() {
         _isLoading = false;
         _categories = category;
@@ -35,14 +35,12 @@ class _PastQuestionObjState extends State<PastQuestionObj> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {
-          ThemeServce().switchTheme();
-        }),
+        onPressed: () => Get.to(()=>AddObj()),
         child: Icon(Icons.add, size: 30),
       ),
       appBar: AppBar(
         title: Text(
-          "Categories",
+          "Course",
           style: GoogleFonts.robotoSlab(fontSize: 30),
         ),
         elevation: 0.0,
@@ -65,7 +63,7 @@ class _PastQuestionObjState extends State<PastQuestionObj> {
                     return Card(
                       margin: EdgeInsets.symmetric(vertical: 5.0),
                       child: InkWell(
-                        onTap: () => Get.to(() => AddObj()),
+                        onTap: () => Get.to(() => AddObj(course: "${_categories[i]}",)),
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Row(

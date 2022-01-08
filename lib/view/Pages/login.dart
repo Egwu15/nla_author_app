@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nla_author_app/controllers/authController.dart';
 import 'package:nla_author_app/services/themeService.dart';
 import 'package:nla_author_app/view/common/custormButton.dart';
-import 'package:nla_author_app/view/common/custormLoadingIndicator.dart';
 import 'package:nla_author_app/view/common/custormTextField.dart';
 
 class Login extends StatefulWidget {
@@ -22,8 +21,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton:
-          FloatingActionButton(onPressed: () => ThemeServce().switchTheme()),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -61,7 +58,6 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: 35.0,
               ),
-
               CustormButton(
                   isLoading: _isLoading,
                   func: () {
@@ -79,7 +75,6 @@ class _LoginState extends State<Login> {
                     });
                   },
                   text: "LOGIN")
-              
             ]),
           ),
         ),

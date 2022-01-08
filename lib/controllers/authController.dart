@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:nla_author_app/services/hiveStorage.dart';
 import 'package:nla_author_app/view/Pages/homepage.dart';
-import 'package:nla_author_app/view/common/snackbar.dart';
+import 'package:nla_author_app/view/common/custormsnackbar.dart';
 import '../env.dart';
 
 class Auth {
@@ -21,11 +21,11 @@ class Auth {
         await HiveStorageMain().addToken(jsonDecode(response.body)['data']);
         Get.to(() => HomePage());
       } else {
-        custormSnackBar(title: "Error", message: response.body);
+        errorSnackBar(title: "Error", message: response.body);
       }
     } catch (e) {
       print(e);
-      custormSnackBar(
+      errorSnackBar(
           title: "Error",
           message: "Error connecting to network, please check your connection");
     }
